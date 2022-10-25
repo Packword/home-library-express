@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/bookEdit.css">
+    <title><%=book.title%>|Подробности</title>
+</head>
+<body>
+<h2 class="header">Редактировать: </h2>
+    <div class="content">
+        <form method="post" action="/edit/<%=book.id%>">
+            <input type="text" name="title" value="<%= book.title %>" />
+            <input type="text" name="author" value="<%= book.author %>" />
+            <input type="date" name="date_release" value="<%= book.date_release %>" />
+            <button type="submit">Сохранить</button>
+        </form>
+        <% if(book.is_taken){ %>
+        <div class="taken-info">
+            Взял(а): <p id="name" onclick="showDialog(<%=JSON.stringify(users)%>, <%=JSON.stringify(book)%>, <%=JSON.stringify(books)%>)"><%=book.taken_by%></p><br/>
+            <dialog id="name-info">
+            </dialog>
+            Взята до: <%=book.taken_until%><br/>
+        </div>
+        <form method="post" action="/return/<%=book.id%>">
+            <button type="submit" class="bottom-btn">Вернуть</button>
+        </form>
+        <% }else{ %>
+            <form method="post" action="/give/<%=book.id%>">
+                <div class="taken-info">
+                    В наличии <br/>
+                    <p class="give">
+                        Выдать пользователю:
+                    </p>
+                </div>
+                <input type="text" name="user_name" placeholder="Имя..." />
+                <button type="submit" class="bottom-btn">Выдать</button>
+            </form>
+        <% } %>
+    </div>
+
+<script src="../js/bookEdit.js"></script>
+</body>
+</html>

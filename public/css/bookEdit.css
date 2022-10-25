@@ -1,0 +1,70 @@
+body {
+    font-family: 'lato', sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+    background-color: #E3C44B;
+    font-size: 16pt;
+}
+
+#name-info{
+    font-size: 12pt;
+    text-align: center;
+}
+
+#name{
+    cursor: pointer;
+}
+
+#name:hover{
+    color: coral;
+}
+
+.header{
+    margin-left: 15px;
+}
+
+button{
+    font-family: 'lato', sans-serif;
+    font-size: 16pt;
+}
+
+button, input[type="submit"], input[type="reset"] {
+    background: #D0B341;
+    color: inherit;
+    border: 3px solid #6C5B18;
+    border-radius: 3px;
+    padding: 5px;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+    margin-right: 40px;
+}
+button:hover{
+    background: #E7CA5B;
+}
+
+input{
+    font-family: 'lato', sans-serif;
+    font-size: 16pt;
+    border: 1px solid #95A5A6;
+    border-radius: 3px;
+}
+
+.content{
+    margin-left: 50px;
+    margin-top: 20px;
+}
+
+.content input{
+    margin-right: 10px;
+    padding-left: 10px;
+}
+
+.taken-info{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.give{
+    float: left;
+    margin-right: 10px;
+}

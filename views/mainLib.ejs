@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/mainLib.css">
+    <script src="https://kit.fontawesome.com/6597bdd1cc.js" crossorigin="anonymous"></script>
+    <title>Библиотека</title>
+</head>
+<body>
+    <div id="library">
+        <div class="container">
+            <h2>Home Library
+                <select id="filter_menu" class="custom-select">
+                    <option value="no filter">Без фильтра</option>
+                    <option value="is taken">В наличии</option>
+                    <option>Просрочены</option>
+                </select>
+            </h2>
+            <ul class="responsive-table">
+                <li class="table-header">
+                    <div class="col col-1">№</div>
+                    <div class="col col-2">Title</div>
+                    <div class="col col-3">Author</div>
+                    <div class="col col-4">Release date</div>
+                    <div class="col col-5">In stock</div>
+                    <div class="col col-6">Taken by</div>
+                    <div class="col col-7">Return date</div>
+                    <div class="col col-8">Actions</div>
+                </li>
+
+                <div id="table-wrap">
+                    <%
+                    count = 0;
+                    for(book of books){
+                        count++;
+                    %>
+                    <li class="table-row">
+                        <div class="col col-1" data-label="№"><%=count%></div>
+                        <div class="col col-2" data-label="Title"><%= book.title %></div>
+                        <div class="col col-3" data-label="Author"><%= book.author %></div>
+                        <div class="col col-4" data-label="Release date"><%= book.date_release %></div>
+                        <%
+                        if(book.is_taken){
+                        %>
+                            <div class="col col-5" data-label="In stock">Нет в наличии</div>
+                            <div class="col col-6" data-label="Taken by"><%= book.taken_by %></div>
+                            <div class="col col-7" data-label="Return date"><%= book.taken_until %></div>
+                        <%
+                        }
+                        else{
+                        %>
+                            <div class="col col-5" data-label="In stock">В наличии</div>
+                            <div class="col col-6" data-label="Taken by"> </div>
+                            <div class="col col-7" data-label="Return date"> </div>
+                        <%
+                        }
+                        %>
+                        <div class="col col-8" data-label="Actions">
+                            <form method="post" action="/books/<%=book.id%>"><button type="submit"><i class="fa-solid fa-trash"></i></button></form>
+                            <a href="/edit/<%=book.id%>"><i class="fa-solid fa-pen-to-square"></i></a>
+                        </div>
+                    </li>
+                    <%}%>
+                </div>
+                <li class="table-row">
+                    <a href="/add/"><i class="fa-solid fa-plus fa-xl add-book"></i></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+<script src="js/mainLib.js"></script>
+</body>
+</html>
